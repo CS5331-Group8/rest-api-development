@@ -69,7 +69,7 @@ app.get('/', function (req, res, next) {
         "result": [
             "/",
             "/meta/heartbeat",
-            "/meta/team"
+            "/meta/members"
         ]
     });
     // return res.render('index');
