@@ -16,7 +16,7 @@ RUN npm install
 COPY . /usr/src/app
 
 # Expose the port the app runs in
-EXPOSE 3000 8080
+EXPOSE 80 8080
 
 # Serve the app
 RUN npm run build:prod

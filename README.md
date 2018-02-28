@@ -94,33 +94,35 @@ Please fill out this section with details relevant to your team.
 
 ### Team Members
 
-1. Wei Lip
-2. Ben
-3. Shirlene
-4. James
+1. Ho Wei Lip
+2. Cao Shuai Benjamin
+3. Shirlene Quah Jiamin
+4. James Tan Wee Jing
 
 ### Short Answer Questions
 
 #### Question 1: Briefly describe the web technology stack used in your implementation.
-
-Answer: MEAN STACK => Mongo, Expressjs, Angular 5, nodejs
+Answer: MEAN STACK => Mongo, Expressjs, Angular 5, Nodejs
 
 #### Question 2: Are there any security considerations your team thought about?
 
-Answer: Please replace this sentence with your answer.
+Answer: Only allow localhost(Only domain for now) and proper domains to have CORS access.
+HTTPS(No money to buy certs). 
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
-Answer: Changing the id int.Ids should ever be in int as the space is too small.Making it
-susceptible to sequence attacks
+Answer: Changing the id int. Ids should never be in int as the space is too small. Making it
+susceptible to sequence attacks.
 
 #### Question 4: Are there any additional features you would like to highlight?
 
-Answer: Nice app
+Answer: Form validation on client side to prevent Non-Technical attackers from fuzzing. 
+MongoDb equivalent of prepared statement used.
+
 
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
-Answer: No for now
+Answer: No for now. 
 
 #### Feedback: Is there any other feedback you would like to give?
 
@@ -135,7 +137,7 @@ Answer: Give me full marks
 2. Ben
     - Did the Diary api
 3. James
-    - Set up docker and the rest of the end points
+    - Set up docker ,the rest of the static get end points, testing
 4. Shirlene
     - User interface and testing.
 

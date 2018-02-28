@@ -9,21 +9,11 @@ var mongoose = require('mongoose');
 var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 var app = express();
-// var IdCounter = require('./models/counter');
 var dbhost = process.env.DBHOST || 'localhost:27017';
 console.log ("STARTING HERE TEST DB HOST:  " + dbhost);
 mongoose.connect( dbhost + '/node-angular');
 
 
-// IdCounter.find({type: "message"}, function (err, resultArray) {
-//     if (err) throw err;
-//     console.log(resultArray);
-//     if(resultArray.length ==0) {
-//         var a = new IdCounter({counter: 0, type: "message"});
-//         a.save();
-//     }
-// });
-//Change this to the script later
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +29,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    console.log(req.hostname);
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET');
     // res.status(200);
@@ -59,10 +50,10 @@ app.get('/meta/members', function (req, res) {
     res.status(200).json({
         "status": true,
         "result": [
-            "Wei Lip",
-            "James",
-            "Ben",
-            "Shirlene"
+            "Ho Wei Lip",
+            "James Tan Wee Jing",
+            "Cao Shuai Benjamin",
+            "Shirlene Quah Jiamin"
         ]
     });
 });
@@ -78,7 +69,7 @@ app.get('/', function (req, res, next) {
         "result": [
             "/",
             "/meta/heartbeat",
-            "/meta/members"
+            "/meta/team"
         ]
     });
     // return res.render('index');

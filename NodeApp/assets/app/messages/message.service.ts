@@ -105,10 +105,11 @@ export class MessageService {
     //         .catch((error: Response) => Observable.throw(error.json()));
     // }
     updatePermission(message : Message){
+        //Reverse the message public status
         const body = {
             "token": localStorage.getItem('token'),
             "id": message.id,
-            "private": message.public
+            "public": message.public
         };
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:8080/diary/permission', body, {headers: headers})

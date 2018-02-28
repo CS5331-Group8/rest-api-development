@@ -24,7 +24,6 @@ export class SignupComponent implements OnInit {
             this.myForm.value.fullname,
             this.myForm.value.age
         );
-        console.log("alods lvol");
         this.authService.signup(user)
             .subscribe(
                 data => console.log(data),
@@ -33,16 +32,16 @@ export class SignupComponent implements OnInit {
         this.myForm.reset();
     }
 
+    public nameControl =new FormControl(null, [Validators.required,Validators.pattern("[a-zA-z ][a-zA-Z ]+")]);
+    public ageControl = new FormControl(null, [Validators.required,Validators.min(6),Validators.max(150), Validators.pattern("[0-9]*")]);
+    public userNameControl =new FormControl(null, [Validators.required,Validators.minLength(6)]);
+    public passWordControl = new FormControl(null, [Validators.required,Validators.minLength(8)]);
     ngOnInit() {
         this.myForm = new FormGroup({
-            fullname: new FormControl(null, Validators.required),
-            age: new FormControl(null, Validators.required),
-            username: new FormControl(null, Validators.required),
-            // email: new FormControl(null, [
-            //     Validators.required,
-            //     Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-            // ]),
-            password: new FormControl(null, Validators.required)
+            fullname: this.nameControl,
+            age: this.ageControl,
+            username: this.userNameControl,
+            password: this.passWordControl
         });
     }
 }

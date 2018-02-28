@@ -9,7 +9,7 @@ services:
   express: #name of the second service
     build: NodeApp # specify the directory of the Dockerfile
     ports:
-      - "80:3000" #specify ports forewarding
+      - "80:80" #specify ports forewarding
       - "8080:8080"
     environment:
         - DBHOST=mongodb://database

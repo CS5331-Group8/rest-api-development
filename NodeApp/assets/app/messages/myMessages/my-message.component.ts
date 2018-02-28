@@ -44,6 +44,7 @@ export class MyMessageComponent {
     }
     updatePermission(message : Message){
         // console.log("SE ME");
+        message.public = !message.public;
         this.messageService.updatePermission(message).subscribe();
 
     }

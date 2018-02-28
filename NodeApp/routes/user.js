@@ -53,23 +53,22 @@ router.post('/register', function (req, res, next) {
 });
 
 router.post('/authenticate', function(req, res, next) {
-    console.log("wtf");
     res.contentType("application/json");
     User.findOne({username: req.body.username}, function(err, user) {
         if (err) {
-            console.log("1");
+            console.log("Some error occured" + err);
             return res.status(200).json({
                 "status": false
             });
         }
         if (!user) {
-            console.log("2");
+            console.log("No such user");
             return res.status(200).json({
                 "status": false
             });
         }
         if (!bcrypt.compareSync(req.body.password, user.password)) {
-            console.log("3");
+            console.log("Password wrong");
             return res.status(200).json({
                 "status": false
             });
@@ -79,9 +78,7 @@ router.post('/authenticate', function(req, res, next) {
 
         console.log("1/Token:" + token  + "\nUUID:" + generatedUUID);
         uuidMap[generatedUUID] = token;
-
         console.log(uuidMap);
-
         res.status(200).json({
             status: true,
             token: generatedUUID
@@ -92,11 +89,13 @@ router.post('/authenticate', function(req, res, next) {
 router.post('/expire', function (req, res, next) {
     res.contentType("application/json");
     if(uuidMap[req.body.token]){
+        console.log("Token exist and removing token")
         delete uuidMap[req.body.token];
         res.status(200).json({
             status: true
         });
     }else{
+        console.log("Token dosent exist")
         res.status(200).json({
             status: false
         });

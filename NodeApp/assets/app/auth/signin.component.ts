@@ -11,8 +11,10 @@ import { AuthService } from "./auth.service";
 })
 export class SigninComponent {
     myForm: FormGroup;
-
-    constructor(private authService: AuthService, private router: Router) {}
+    public isWrong :boolean = false;
+    constructor(private authService: AuthService, private router: Router) {
+        console.log(window.location.host);
+    }
 
     onSubmit() {
         const user = new User(this.myForm.value.username, this.myForm.value.password);
@@ -21,6 +23,7 @@ export class SigninComponent {
                 data => {
                     if(data.status == false){
                         console.log("Log in Fai led");
+                        this.failedSignIn = true;
                         return;
                     }
 
@@ -35,11 +38,13 @@ export class SigninComponent {
 
         this.myForm.reset();
     }
-
+    public userNameControl =new FormControl(null, [Validators.required,Validators.minLength(6)]);
+    public passWordControl = new FormControl(null, [Validators.required,Validators.minLength(8)]);
+    public failedSignIn = false;
     ngOnInit() {
         this.myForm = new FormGroup({
-            username: new FormControl(null, Validators.required),
-            password: new FormControl(null, Validators.required)
+            username: this.userNameControl,
+            password: this.passWordControl
         });
     }
 }

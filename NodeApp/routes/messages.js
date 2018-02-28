@@ -6,17 +6,20 @@ var User = require('../models/user');
 var Message = require('../models/message');
 var userRoute = require('./user');
 // var IdCounter = require('../models/counter');
-
-
+//For assingment just use magic strings
+// Using JWT is sort of cheating but the right thing to do
+//I have no idea what .populate does but law number 1. Do not fix what is no broken
 router.get('/', function (req, res, next) {
     Message.find({isPublic: true})
         .populate('user', 'fullname')
         .exec(function (err, messages) {
             if (err) {
-                console.log("Should not be Error");
-
+                console.log("This should only be the empty case");
+                return res.status(200).json({
+                    "status": true,
+                    "result": []
+                });
             }
-            // console.log(messages);
             var result = []
             for (var i = 0; i < messages.length; i++) {
                 console.log(messages[i]);
@@ -35,13 +38,13 @@ router.get('/', function (req, res, next) {
             });
         });
 });
-
+//FOr the rest need to verify
 router.use('/', function (req, res, next) {
-    // console.log("HERE:" + userRoute);
+
     console.log(userRoute.uuidMap[req.body.token]);
     jwt.verify(userRoute.uuidMap[req.body.token], 'secret', function (err, decoded) {
         if (err) {
-            console.log("why here 123")
+            console.log("Token wrong")
             return res.status(200).json({
                 "status": false,
                 "error": "Invalid authentication token."
@@ -57,8 +60,11 @@ router.post('/', function (req, res, next) {
         .populate('user', 'fullname')
         .exec(function (err, messages) {
             if (err) {
-                console.log("Should not be Error");
-
+                console.log("Should not be Error if error gg");
+                return res.status(200).json({
+                    "status": true,
+                    "result": []
+                });
             }
             // console.log(messages);
             var result = []
@@ -80,13 +86,6 @@ router.post('/', function (req, res, next) {
 
 router.post('/create', function (req, res, next) {
     var decoded = jwt.decode(userRoute.uuidMap[req.body.token]);
-    // IdCounter.find({type: "message"}, function (err, resultArray) {
-    //     if (err) throw err;
-    //     console.log(resultArray);
-    //     var counterResult = resultArray[0];
-    //     counterResult.counter = counterResult.counter + 1;
-    //     var newCounter = new IdCounter(counterResult);
-    //     console.log(counterResult.counter + "wtf");
     User.findById(decoded.user._id, function (err, user) {
         if (err) {
             console.log("ADD ERROR" + err);
@@ -103,6 +102,7 @@ router.post('/create', function (req, res, next) {
             text: req.body.text,
             user: user
         });
+        //This statement is not working dont know why but not important le i dont use it already.
         user.messages.push(message);
         user.save();
         message.save(function (err, result) {
@@ -113,16 +113,14 @@ router.post('/create', function (req, res, next) {
                     "error": "Invalid authentication token."
                 });
             }
-
             res.status(201).json({
                 "status": true,
                 "result": result.idCounter
             });
         });
     });
-    // });
-
 });
+
 router.post('/permission', function (req, res, next) {
     var decoded = jwt.decode(userRoute.uuidMap[req.body.token]);
     console.log(req.body);
@@ -153,9 +151,7 @@ router.post('/permission', function (req, res, next) {
                 "error": "Invalid authentication token."
             });
         }
-        console.log(req.body.private + "\n\n\n CONFUSED");
-        message.isPublic = !req.body.private;
-        console.log(message.isPublic + "\n\n\n CONFUSED");
+        message.isPublic = req.body.public;
         message.save(function (err, result) {
             if (err) {
                 return res.status(200).json({
@@ -177,45 +173,47 @@ router.post('/delete', function (req, res, next) {
     Message.find({idCounter: req.body.id}, function (err, messageArr) {
         if (!messageArr) {
             //This should not happen
+            console.log("WRONG MSG ID but i got to return invalid token ....");
             return res.status(200).json({
                 "status": false,
                 "error": "Invalid authentication token."
             });
         }
         message = messageArr[0];
-        console.log("should only find 1" + messageArr.length);
-
+        console.log("Should only find 1" + messageArr.length);
         if (err) {
-            return res.status(500).json({
-                title: 'An error occurred',
-                error: err
+            console.log("WRONG MSG ID but i got to return invalid token ....");
+            return res.status(200).json({
+                "status": false,
+                "error": "Invalid authentication token."
             });
         }
         if (!message) {
-            return res.status(500).json({
-                title: 'No Message Found!',
-                error: {message: 'Message not found'}
+            console.log("WRONG MSG ID but i got to return invalid token ....")
+            return res.status(200).json({
+                "status": false,
+                "error": "Invalid authentication token."
             });
         }
         if (message.user != decoded.user._id) {
-            console.log("a" + message.user + "\nb" + decoded.user._id);
-            return res.status(401).json({
-                title: 'Not Authenticated',
-                error: {message: 'Users do not match'}
+            console.log("DOnt let this guy delete other people stuff");
+            return res.status(200).json({
+                "status": false,
+                "error": "Invalid authentication token."
             });
         }
         var removeMsg = new Message(message);
         console.log("removing");
         removeMsg.remove(function (err, result) {
             if (err) {
-                return res.status(500).json({
-                    title: 'An error occurred',
-                    error: err
+                console.log("should never come here check like hell on top")
+                return res.status(200).json({
+                    "status": false,
+                    "error": "Invalid authentication token."
                 });
             }
             res.status(200).json({
-                message: 'Deleted message',
-                obj: result
+                "status": true,
             });
         });
     });
