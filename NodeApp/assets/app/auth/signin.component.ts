@@ -27,7 +27,7 @@ export class SigninComponent {
                         return;
                     }
 
-                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('token', data.result.token);
                     // localStorage.setItem('userId', data.userId);
                     console.log("asd");
                     this.authService.getInfo().subscribe();

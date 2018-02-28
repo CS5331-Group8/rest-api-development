@@ -80,8 +80,10 @@ router.post('/authenticate', function(req, res, next) {
         uuidMap[generatedUUID] = token;
         console.log(uuidMap);
         res.status(200).json({
-            status: true,
-            token: generatedUUID
+            "status" : true,
+            "result": {
+                "token": generatedUUID
+            }
         });
     });
 });
