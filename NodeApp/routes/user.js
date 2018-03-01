@@ -27,9 +27,11 @@ router.post('/', function (req, res, next) {
         }
         res.status(200).json({
             "status": true,
-            "username": user.username,
-            "fullname": user.fullname,
-            "age": user.age
+            "result" : {
+                "username": user.username,
+                "fullname": user.fullname,
+                "age": user.age
+            }
         });
     });
 });
