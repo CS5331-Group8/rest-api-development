@@ -41,7 +41,13 @@ router.get('/', function (req, res, next) {
 //FOr the rest need to verify
 router.use('/', function (req, res, next) {
 
-    console.log(userRoute.uuidMap[req.body.token]);
+    // console.log(userRoute.uuidMap[req.body.token]);
+    if(!uuidMap[req.body.token]){
+        return res.status(200).json({
+            "status": false,
+            "error": "Invalid authentication token."
+        });
+    }
     jwt.verify(userRoute.uuidMap[req.body.token], 'secret', function (err, decoded) {
         if (err) {
             console.log("Token wrong")
@@ -115,7 +121,9 @@ router.post('/create', function (req, res, next) {
             }
             res.status(201).json({
                 "status": true,
-                "result": result.idCounter
+                "result": {
+                    "id" : result.idCounter
+                }
             });
         });
     });

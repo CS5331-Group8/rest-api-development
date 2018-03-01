@@ -38,7 +38,6 @@ export class AuthService {
     }
 
     getInfo() {
-
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token')
             ? localStorage.getItem('token')
@@ -51,7 +50,6 @@ export class AuthService {
                 console.log(result);
             })
             .catch((error: Response) => Observable.throw(error.json()));
-
     }
 
 

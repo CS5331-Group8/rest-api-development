@@ -8,9 +8,15 @@ var User = require('../models/user');
 var uuidMap = {};
 router.post('/', function (req, res, next) {
     res.contentType("application/json");
-    console.log(uuidMap[req.body]);
+    console.log(req.body.token);
     var decoded = jwt.decode(uuidMap[req.body.token]);
-    console.log("here");
+    console.log(decoded);
+    if(!uuidMap[req.body.token]){
+        return res.status(200).json({
+            "status": false,
+            "error": "Invalid authentication token."
+        });
+    }
     User.findById(decoded.user._id, function (err, user) {
         if (err) {
             return res.status(200).json({
