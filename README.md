@@ -103,42 +103,51 @@ Please fill out this section with details relevant to your team.
 ### Short Answer Questions
 
 #### Question 1: Briefly describe the web technology stack used in your implementation.
-Answer: We implemented the website using the MEAN Javascript software stack. This includes MongoDB as a NoSQL database, Express.js as a web application framework running on Node.js, Angular 5 Javascript MVC frameworks, and Node.js, an execution environment for event-driven server-side and networking applications.
+
+We implemented the website using the MEAN Javascript software stack. This includes:
+ - MongoDB as a NoSQL database
+ - Express.js as a web application framework running on Node.js
+ - Angular 5 Javascript MVC frameworks
+ - Node.js, an execution environment for event-driven server-side and networking applications
 
 #### Question 2: Are there any security considerations your team thought about?
 
-Answer: Only allow localhost(Only domain for now) and proper domains to have CORS access.
-HTTPS(No money to buy certs). 
+ - Only allow access via localhost (only domain for now). Proper domains should have CORS access
+ - We wanted to enable access via HTTPS, but that requires additional set-up steps (i.e certificates), which we lack resources to do
+ - SQL injection by submitting malicious strings. MongoDB prevents this
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
-Answer: Changing the id int. Ids should never be in int as the space is too small. Making it
-susceptible to sequence attacks.
+ - Changing the id from an integer. Ids should not be integers as the space is too small. Making it susceptible to sequence attacks.
 
 #### Question 4: Are there any additional features you would like to highlight?
 
-Answer: Form validation on client side to prevent Non-Technical attackers from fuzzing. 
-MongoDb equivalent of prepared statement used.
-
+ - Form validation on client side to prevent Non-Technical attackers from fuzzing
+ - MongoDb equivalent of prepared statement used
 
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
-Answer: No for now. 
+ - Secure against SQL injection. Refer above.
 
 #### Feedback: Is there any other feedback you would like to give?
 
-Answer: Give me full marks
+ - Would be good to provide some resources on how to start web development for first-timers
 
 ### Declaration
 
 #### Please declare your individual contributions to the assignment:
 
 1. Wei Lip
-    - Did the authentication api
+    - Authentication API
+	- Lead Developer
 2. Ben
-    - Did the Diary api
+    - Diary API
+	- Database schema
 3. James
-    - Set up docker, the rest of the static get end points, testing
+    - Docker set-up
+	- Diary API
+	- Testing
 4. Shirlene
-    - User interface and testing.
+    - User Interface
+	- Lead tester
 
