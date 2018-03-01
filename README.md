@@ -114,11 +114,11 @@ We implemented the website using the MEAN Javascript software stack. This includ
 
  - Only allow access via localhost (only domain for now). Proper domains should have CORS access
  - We wanted to enable access via HTTPS, but that requires additional set-up steps (i.e certificates), which we lack resources to do
- - SQL injection by submitting malicious strings. MongoDB prevents this
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
  - Changing the id from an integer. Ids should not be integers as the space is too small. Making it susceptible to sequence attacks.
+ - Adding a salt value to the hashed value of the password
 
 #### Question 4: Are there any additional features you would like to highlight?
 
@@ -128,6 +128,7 @@ We implemented the website using the MEAN Javascript software stack. This includ
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
  - Secure against SQL injection. Refer above.
+ - If the attacker has access to database, attacker is able to get the hashed password and try to get the password in plaintext
 
 #### Feedback: Is there any other feedback you would like to give?
 
@@ -139,15 +140,15 @@ We implemented the website using the MEAN Javascript software stack. This includ
 
 1. Wei Lip
     - Authentication API
-	- Lead Developer
-2. Ben
-    - Diary API
-	- Database schema
+    - Lead Developer
+2. Benjamin
+    - User Interface
+    - Database schema
 3. James
     - Docker set-up
-	- Diary API
-	- Testing
+    - Diary API
+    - Testing
 4. Shirlene
-    - User Interface
-	- Lead tester
+    - Diary API
+    - Lead tester
 
