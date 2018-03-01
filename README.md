@@ -118,7 +118,7 @@ We implemented the website using the MEAN Javascript software stack. This includ
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
  - Changing the id from an integer. Ids should not be integers as the space is too small. Making it susceptible to sequence attacks.
- - Adding a salt value to the hashed value of the password
+ - Adding a random salt value to get the hashed value of the password which would be stored in the database.
 
 #### Question 4: Are there any additional features you would like to highlight?
 
