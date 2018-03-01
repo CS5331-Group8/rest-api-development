@@ -41,8 +41,9 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get install docker-ce
 
-# Install Docker Compose
-https://docs.docker.com/compose/install/
+# Install Docker Compose (https://docs.docker.com/compose/install/)
+sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 # Run the implementation
 sudo ./run.sh
@@ -102,7 +103,7 @@ Please fill out this section with details relevant to your team.
 ### Short Answer Questions
 
 #### Question 1: Briefly describe the web technology stack used in your implementation.
-Answer: MEAN STACK => Mongo, Expressjs, Angular 5, Nodejs
+Answer: We implemented the website using the MEAN Javascript software stack. This includes MongoDB as a NoSQL database, Express.js as a web application framework running on Node.js, Angular 5 Javascript MVC frameworks, and Node.js, an execution environment for event-driven server-side and networking applications.
 
 #### Question 2: Are there any security considerations your team thought about?
 
@@ -137,7 +138,7 @@ Answer: Give me full marks
 2. Ben
     - Did the Diary api
 3. James
-    - Set up docker ,the rest of the static get end points, testing
+    - Set up docker, the rest of the static get end points, testing
 4. Shirlene
     - User interface and testing.
 
