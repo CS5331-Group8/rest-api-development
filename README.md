@@ -127,7 +127,7 @@ We implemented the website using the MEAN Javascript software stack. This includ
 
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
- - Secure against SQL injection. Refer above.
+ - Secure against javascript injection for mongodb using prepared statements.
  - If the attacker has access to database, attacker is able to get the hashed password and try to get the password in plaintext
 
 #### Feedback: Is there any other feedback you would like to give?
