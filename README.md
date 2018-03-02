@@ -87,10 +87,10 @@ If a response is received, you're good to go.
 Please replace the example screenshots with screenshots of your completed
 project. Feel free to include more than one.
 
-(./img/DiaryNewPost.png)
-(./img/PublicDiary.png)
-(./img/Diary.png)
-(./img/SignUp.png)
+![Diary New Post](./img/DiaryNewPost.png)
+![Public Diary](./img/PublicDiary.png)
+![Diary](./img/Diary.png)
+![Sign Up Page](./img/SignUp.png)
 
 ## Administration and Evaluation
 
