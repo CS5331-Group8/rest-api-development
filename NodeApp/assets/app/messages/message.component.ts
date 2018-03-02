@@ -19,6 +19,11 @@ import { MessageService } from "./message.service";
             font-size: 12px;
             width: 19%;
         }
+	.form-group {
+	background-color: #E7E7E7;
+	padding: 5px;
+	border-radius: 8px;
+	}
     `]
 })
 export class MessageComponent {

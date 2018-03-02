@@ -87,7 +87,10 @@ If a response is received, you're good to go.
 Please replace the example screenshots with screenshots of your completed
 project. Feel free to include more than one.
 
-![Sample Screenshot](./img/samplescreenshot.png)
+(./img/DiaryNewPost.png)
+(./img/PublicDiary.png)
+(./img/Diary.png)
+(./img/SignUp.png)
 
 ## Administration and Evaluation
 
